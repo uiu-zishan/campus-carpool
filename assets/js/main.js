@@ -1,9 +1,19 @@
-// assets/js/main.js
-// P4: Frontend JavaScript Integration (covered by P1 as Team Lead)
+// assets/js/main.js — Shared across all pages
 
+// ============ LOGOUT HANDLER ============
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Clear any client-side session markers
+        if (confirm('Are you sure you want to logout?')) {
+            window.location.href = 'login.html';
+        }
+    });
+}
+
+// ============ LOGIN FORM ============
 document.addEventListener('DOMContentLoaded', () => {
-
-    // 1. Handle LOGIN Form Submission
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
@@ -19,9 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({ email, password })
                 });
                 const data = await response.json();
-
                 if (data.success) {
-                    alert('Login Successful! Welcome ' + data.user.full_name);
                     window.location.href = 'dashboard.html';
                 } else {
                     errorMsg.innerText = data.message;
@@ -33,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Handle REGISTER Form Submission
     const registerForm = document.getElementById('registerForm');
     if (registerForm) {
         registerForm.addEventListener('submit', async (e) => {
@@ -52,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({ email, password, full_name, gender, role })
                 });
                 const data = await response.json();
-
                 if (data.success) {
                     alert('Registration Successful! Please log in.');
                     window.location.href = 'login.html';
