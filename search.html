@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Ride - Campus Carpool</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <a href="dashboard.html" class="brand">Campus Carpool</a>
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="search.html" class="active">Find a Ride</a>
+            <a href="post-ride.html">Post a Ride</a>
+            <a href="profile.html">Profile</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Find a Ride</h1>
+            <p>Search for available carpool options</p>
+        </div>
+
+        <div class="filter-bar">
+            <input type="text" id="filterOrigin" placeholder="From (e.g., Main Gate)">
+            <input type="text" id="filterDestination" placeholder="To (e.g., Library)">
+            <input type="date" id="filterDate">
+            <label style="display:flex; align-items:center; gap:6px; padding: 10px 0;">
+                <input type="checkbox" id="filterFemaleOnly"> Female only
+            </label>
+            <button class="btn-primary" id="searchBtn">Search</button>
+            <button class="btn-secondary" id="clearBtn">Clear</button>
+        </div>
+
+        <div id="searchResults" class="ride-grid">
+            <div class="loading"><div class="spinner"></div>Loading rides...</div>
+        </div>
+    </div>
+
+    <script src="assets/js/search.js"></script>
+</body>
+</html>

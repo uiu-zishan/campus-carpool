@@ -34,3 +34,337 @@ body {
 @media (max-width: 480px) {
     .auth-box { padding: 24px; box-shadow: none; border: 1px solid #e2e2e2; }
 }
+
+/* ==========================================================
+   WEEK 2 STYLES - Dashboard Components, Cards, Badges, Modals
+   ========================================================== */
+
+/* Top Navigation Bar */
+.topnav {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e2e2;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.topnav .brand {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    color: #000;
+}
+
+.topnav .nav-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.topnav .nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.15s;
+}
+
+.topnav .nav-links a:hover {
+    background: #f3f3f3;
+}
+
+.topnav .nav-links a.active {
+    color: #000;
+    font-weight: 600;
+}
+
+/* Page Container */
+.page-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+}
+
+/* Page Header */
+.page-header {
+    margin-bottom: 28px;
+}
+
+.page-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    color: #6b6b6b;
+    font-size: 16px;
+}
+
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.filter-bar input,
+.filter-bar select {
+    padding: 10px 14px;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 15px;
+    outline: none;
+    min-width: 160px;
+}
+
+.filter-bar input:focus,
+.filter-bar select:focus {
+    border-color: #000;
+}
+
+/* Ride Card Grid */
+.ride-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+}
+
+.ride-card {
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    padding: 20px;
+    transition: box-shadow 0.15s, border-color 0.15s;
+    cursor: pointer;
+}
+
+.ride-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border-color: #ccc;
+}
+
+.ride-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.ride-card .meta {
+    color: #6b6b6b;
+    font-size: 14px;
+    margin: 4px 0;
+}
+
+.ride-card .driver {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 14px;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-scheduled { background: #e8f4ff; color: #0066cc; }
+.badge-confirmed { background: #e6f7ee; color: #00875a; }
+.badge-pending   { background: #fff7e6; color: #b76e00; }
+.badge-cancelled { background: #ffe6e6; color: #cc0000; }
+.badge-completed { background: #f0f0f0; color: #333; }
+.badge-female    { background: #fce8f3; color: #b3197a; }
+
+/* Button variations */
+.btn-secondary {
+    background: #f3f3f3;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.btn-secondary:hover { background: #e2e2e2; }
+
+.btn-danger {
+    background: #cc0000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-danger:hover { background: #a30000; }
+
+.btn-small { padding: 6px 14px; font-size: 13px; }
+
+/* Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal {
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.modal h2 { font-size: 22px; margin-bottom: 12px; }
+.modal p { color: #6b6b6b; margin-bottom: 24px; }
+
+.modal .modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+/* Star Rating */
+.star-rating {
+    display: flex;
+    gap: 6px;
+    font-size: 32px;
+    cursor: pointer;
+    margin: 16px 0;
+}
+
+.star-rating .star {
+    color: #ddd;
+    transition: color 0.15s;
+}
+
+.star-rating .star.active,
+.star-rating .star:hover { color: #ffc107; }
+
+/* Checkpoint Rows (Post Ride form) */
+.checkpoint-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.checkpoint-row input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    background: #fff;
+}
+
+.checkpoint-row .remove-btn {
+    background: #ffe6e6;
+    color: #cc0000;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6b6b6b;
+}
+
+.empty-state h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* Loading Spinner */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #6b6b6b;
+}
+
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #000;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Profile Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.stat-card .label {
+    font-size: 13px;
+    color: #6b6b6b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.stat-card .value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+}
