@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Details - Campus Carpool</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <a href="dashboard.html" class="brand">Campus Carpool</a>
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="search.html">Find a Ride</a>
+            <a href="post-ride.html">Post a Ride</a>
+            <a href="profile.html">Profile</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <a href="search.html" style="color:#000; text-decoration:none; font-weight:600;">← Back to Search</a>
+
+        <div id="rideDetails" style="margin-top: 20px;">
+            <div class="loading"><div class="spinner"></div>Loading ride details...</div>
+        </div>
+
+        <!-- Booking Form (hidden until user clicks Book) -->
+        <div id="bookingForm" style="display:none; margin-top: 24px; padding: 24px; background:#f9f9f9; border-radius:12px;">
+            <h2 style="margin-bottom: 16px;">Confirm Your Booking</h2>
+
+            <div class="input-group">
+                <label for="pickupCheckpoint">Pickup Point</label>
+                <select id="pickupCheckpoint" required></select>
+            </div>
+
+            <div class="input-group">
+                <label for="dropoffCheckpoint">Dropoff Point</label>
+                <select id="dropoffCheckpoint" required></select>
+            </div>
+
+            <button class="btn-primary" id="confirmBookingBtn">Confirm Booking</button>
+            <p id="bookingError" class="error-message"></p>
+        </div>
+    </div>
+
+    <!-- Cancel Modal -->
+<div class="modal-overlay" id="cancelModal">
+    <div class="modal">
+        <h2>Cancel Booking?</h2>
+        <p>This action will apply a penalty to your account.</p>
+        <div class="modal-actions">
+            <button class="btn-secondary" data-close-modal>Keep Booking</button>
+            <button class="btn-danger" id="confirmCancelBtn">Yes, Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Rate Modal -->
+<div class="modal-overlay" id="rateModal">
+    <div class="modal">
+        <h2>Rate This Ride</h2>
+        <p>How was your experience with <span id="rateeName">the other party</span>?</p>
+        <div class="star-rating" id="starRating">
+            <span class="star" data-score="1">★</span>
+            <span class="star" data-score="2">★</span>
+            <span class="star" data-score="3">★</span>
+            <span class="star" data-score="4">★</span>
+            <span class="star" data-score="5">★</span>
+        </div>
+        <div class="input-group">
+            <label for="ratingComment">Comment (optional)</label>
+            <input type="text" id="ratingComment" placeholder="Leave a comment...">
+        </div>
+        <div class="modal-actions">
+            <button class="btn-secondary" data-close-modal>Cancel</button>
+            <button class="btn-primary" id="submitRatingBtn">Submit Rating</button>
+        </div>
+    </div>
+</div>
+
+<!-- Favorite Modal -->
+<div class="modal-overlay" id="favoriteModal">
+    <div class="modal">
+        <h2>Favorite Driver?</h2>
+        <p>Add <span id="favoriteDriverName">this driver</span> to your favorites?</p>
+        <div class="modal-actions">
+            <button class="btn-secondary" data-close-modal>Cancel</button>
+            <button class="btn-primary" id="confirmFavoriteBtn">Add to Favorites</button>
+        </div>
+    </div>
+</div>
+
+    <script src="assets/js/ride-details.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Vehicle - Campus Carpool</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <a href="dashboard.html" class="brand">Campus Carpool</a>
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="search.html">Find a Ride</a>
+            <a href="post-ride.html">Post a Ride</a>
+            <a href="profile.html">Profile</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="page-container" style="max-width: 600px;">
+        <div class="page-header">
+            <h1>My Vehicle</h1>
+            <p>Register your vehicle to start offering rides</p>
+        </div>
+
+        <div id="existingVehicle" style="display:none;">
+            <div class="stat-card" style="margin-bottom: 24px;">
+                <div class="label">Current Vehicle</div>
+                <div style="font-size: 20px; font-weight: 600; margin-top: 8px;" id="vehicleInfo">—</div>
+                <button class="btn-secondary btn-small" id="editVehicleBtn" style="margin-top: 12px;">Edit</button>
+            </div>
+        </div>
+
+        <form id="vehicleForm">
+            <div class="input-row">
+                <div class="input-group half">
+                    <label for="make">Make</label>
+                    <input type="text" id="make" placeholder="e.g., Toyota" required>
+                </div>
+                <div class="input-group half">
+                    <label for="model">Model</label>
+                    <input type="text" id="model" placeholder="e.g., Corolla" required>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group half">
+                    <label for="color">Color</label>
+                    <input type="text" id="color" placeholder="e.g., Black" required>
+                </div>
+                <div class="input-group half">
+                    <label for="year">Year</label>
+                    <input type="number" id="year" min="1990" max="2030" placeholder="2020">
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group half">
+                    <label for="licensePlate">License Plate</label>
+                    <input type="text" id="licensePlate" placeholder="e.g., DHA-1234" required>
+                </div>
+                <div class="input-group half">
+                    <label for="capacity">Seats</label>
+                    <input type="number" id="capacity" min="1" max="10" value="4" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary" style="margin-top: 16px;">Save Vehicle</button>
+            <p id="vehicleError" class="error-message"></p>
+        </form>
+    </div>
+
+    <script src="assets/js/vehicle.js"></script>
+</body>
+</html>

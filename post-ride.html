@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Ride - Campus Carpool</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <a href="dashboard.html" class="brand">Campus Carpool</a>
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="search.html">Find a Ride</a>
+            <a href="post-ride.html" class="active">Post a Ride</a>
+            <a href="profile.html">Profile</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="page-container" style="max-width: 700px;">
+        <div class="page-header">
+            <h1>Post a Ride</h1>
+            <p>Offer a ride to your fellow students</p>
+        </div>
+
+        <form id="postRideForm">
+            <div class="input-group">
+                <label for="origin">Origin</label>
+                <input type="text" id="origin" placeholder="e.g., Main Gate" required>
+            </div>
+
+            <div class="input-group">
+                <label for="destination">Destination</label>
+                <input type="text" id="destination" placeholder="e.g., Library" required>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group half">
+                    <label for="departureTime">Departure Time</label>
+                    <input type="datetime-local" id="departureTime" required>
+                </div>
+                <div class="input-group half">
+                    <label for="seatsAvailable">Seats Available</label>
+                    <input type="number" id="seatsAvailable" min="1" max="10" value="3" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>
+                    <input type="checkbox" id="isFemaleOnly"> Female passengers only
+                </label>
+            </div>
+
+            <h3 style="margin-top: 24px; margin-bottom: 12px;">Checkpoints (Route Stops)</h3>
+            <p style="color:#6b6b6b; font-size:14px; margin-bottom:12px;">
+                Add the stops along your route in order. The first is your origin, the last is your destination.
+            </p>
+            <div id="checkpointsContainer"></div>
+            <button type="button" class="btn-secondary" id="addCheckpointBtn">+ Add Checkpoint</button>
+
+            <button type="submit" class="btn-primary" style="margin-top: 24px;">Post Ride</button>
+            <p id="postError" class="error-message"></p>
+        </form>
+    </div>
+
+    <script src="assets/js/post-ride.js"></script>
+</body>
+</html>
