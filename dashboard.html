@@ -7,29 +7,46 @@
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+    <!-- ============ TOP NAVIGATION ============ -->
     <nav class="topnav">
         <a href="dashboard.html" class="brand">Campus Carpool</a>
         <div class="nav-links">
             <a href="dashboard.html" class="active">Dashboard</a>
             <a href="search.html">Find a Ride</a>
             <a href="post-ride.html">Post a Ride</a>
+            <a href="vehicle.html">My Vehicle</a>
             <a href="profile.html">Profile</a>
             <a href="#" id="logoutBtn">Logout</a>
         </div>
     </nav>
 
+    <!-- ============ MAIN CONTENT ============ -->
     <div class="page-container">
+
+        <!-- Welcome Header -->
         <div class="page-header">
             <h1>Welcome, <span id="userName">Loading...</span></h1>
             <p>Manage your rides and bookings</p>
         </div>
 
+        <!-- Driver Profile CTA (Register Vehicle) -->
+        <div class="stat-card" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <div class="label">Driver Profile</div>
+                <div style="font-size: 16px; margin-top: 6px;">
+                    Register your vehicle to start offering rides to other students.
+                </div>
+            </div>
+            <a href="vehicle.html" class="btn-primary" style="text-decoration: none; padding: 10px 20px;">Manage Vehicle</a>
+        </div>
+
+        <!-- Tabs: Passenger / Driver -->
         <div style="margin-bottom: 24px; display: flex; gap: 12px;">
             <button class="btn-primary" id="tabPassenger">My Booked Rides</button>
             <button class="btn-secondary" id="tabDriver">My Posted Rides</button>
         </div>
 
-        <!-- Passenger View -->
+        <!-- Passenger View (default visible) -->
         <div id="passengerView">
             <div id="passengerRides" class="ride-grid">
                 <div class="loading"><div class="spinner"></div>Loading your bookings...</div>
@@ -42,55 +59,60 @@
                 <div class="loading"><div class="spinner"></div>Loading your posted rides...</div>
             </div>
         </div>
+
     </div>
 
-  <!-- Cancel Modal -->
-<div class="modal-overlay" id="cancelModal">
-    <div class="modal">
-        <h2>Cancel Booking?</h2>
-        <p>This action will apply a penalty to your account.</p>
-        <div class="modal-actions">
-            <button class="btn-secondary" data-close-modal>Keep Booking</button>
-            <button class="btn-danger" id="confirmCancelBtn">Yes, Cancel</button>
+    <!-- ============ MODALS ============ -->
+
+    <!-- Cancel Modal -->
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal">
+            <h2>Cancel Booking?</h2>
+            <p>This action will apply a penalty to your account if cancelled within 2 hours of departure.</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" data-close-modal>Keep Booking</button>
+                <button class="btn-danger" id="confirmCancelBtn">Yes, Cancel</button>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Rate Modal -->
-<div class="modal-overlay" id="rateModal">
-    <div class="modal">
-        <h2>Rate This Ride</h2>
-        <p>How was your experience with <span id="rateeName">the other party</span>?</p>
-        <div class="star-rating" id="starRating">
-            <span class="star" data-score="1">★</span>
-            <span class="star" data-score="2">★</span>
-            <span class="star" data-score="3">★</span>
-            <span class="star" data-score="4">★</span>
-            <span class="star" data-score="5">★</span>
-        </div>
-        <div class="input-group">
-            <label for="ratingComment">Comment (optional)</label>
-            <input type="text" id="ratingComment" placeholder="Leave a comment...">
-        </div>
-        <div class="modal-actions">
-            <button class="btn-secondary" data-close-modal>Cancel</button>
-            <button class="btn-primary" id="submitRatingBtn">Submit Rating</button>
+    <!-- Rate Modal -->
+    <div class="modal-overlay" id="rateModal">
+        <div class="modal">
+            <h2>Rate This Ride</h2>
+            <p>How was your experience with <span id="rateeName">the other party</span>?</p>
+            <div class="star-rating" id="starRating">
+                <span class="star" data-score="1">★</span>
+                <span class="star" data-score="2">★</span>
+                <span class="star" data-score="3">★</span>
+                <span class="star" data-score="4">★</span>
+                <span class="star" data-score="5">★</span>
+            </div>
+            <div class="input-group">
+                <label for="ratingComment">Comment (optional)</label>
+                <input type="text" id="ratingComment" placeholder="Leave a comment...">
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" data-close-modal>Cancel</button>
+                <button class="btn-primary" id="submitRatingBtn">Submit Rating</button>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Favorite Modal -->
-<div class="modal-overlay" id="favoriteModal">
-    <div class="modal">
-        <h2>Favorite Driver?</h2>
-        <p>Add <span id="favoriteDriverName">this driver</span> to your favorites?</p>
-        <div class="modal-actions">
-            <button class="btn-secondary" data-close-modal>Cancel</button>
-            <button class="btn-primary" id="confirmFavoriteBtn">Add to Favorites</button>
+    <!-- Favorite Modal -->
+    <div class="modal-overlay" id="favoriteModal">
+        <div class="modal">
+            <h2>Favorite Driver?</h2>
+            <p>Add <span id="favoriteDriverName">this driver</span> to your favorites?</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" data-close-modal>Cancel</button>
+                <button class="btn-primary" id="confirmFavoriteBtn">Add to Favorites</button>
+            </div>
         </div>
     </div>
-</div>  
 
+    <!-- ============ SCRIPTS ============ -->
+    <script src="assets/js/main.js"></script>
     <script src="assets/js/dashboard.js"></script>
 </body>
 </html>
