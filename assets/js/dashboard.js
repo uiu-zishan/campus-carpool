@@ -1,6 +1,20 @@
 // assets/js/dashboard.js
-
+// Load the logged-in user's name
+async function loadUserName() {
+    try {
+        const res = await fetch('api/get_profile.php');
+        const data = await res.json();
+        if (data.success) {
+            document.getElementById('userName').innerText = data.user.full_name;
+        } else {
+            document.getElementById('userName').innerText = 'Guest';
+        }
+    } catch (err) {
+        document.getElementById('userName').innerText = 'User';
+    }
+}
 document.addEventListener('DOMContentLoaded', () => {
+    loadUserName();  
     loadPassengerRides();
 
     document.getElementById('tabPassenger').addEventListener('click', () => {
@@ -39,17 +53,26 @@ async function loadPassengerRides() {
             return;
         }
 
-        container.innerHTML = data.rides.map(ride => `
+        container.innerHTML = data.rides.map(ride => {
+            // Build action buttons based on status
+            let actionButtons = '';
+            if (ride.booking_status === 'confirmed') {
+                actionButtons = `<button class="btn-secondary btn-small" onclick="event.stopPropagation(); openCancelModal(${ride.booking_id})">Cancel</button>`;
+            } else if (ride.booking_status === 'completed') {
+                actionButtons = `<button class="btn-primary btn-small" onclick="event.stopPropagation(); openRateModal(${ride.ride_id}, ${ride.driver_id}, '${ride.driver_name}')">Rate Driver</button>`;
+            }
+
+            return `
             <div class="ride-card" onclick="window.location.href='ride-details.html?id=${ride.ride_id}'">
                 <span class="badge badge-${ride.booking_status}">${ride.booking_status}</span>
                 <h3>${ride.origin} → ${ride.destination}</h3>
                 <p class="meta">Departs: ${new Date(ride.departure_time).toLocaleString()}</p>
                 <p class="meta">Driver: ${ride.driver_name} ⭐ ${ride.driver_rating || 'N/A'}</p>
                 <div style="margin-top:12px;">
-                    <button class="btn-secondary btn-small" onclick="event.stopPropagation(); openCancelModal(${ride.booking_id})">Cancel</button>
+                    ${actionButtons}
                 </div>
-            </div>
-        `).join('');
+            </div>`;
+        }).join('');
     } catch (err) {
         container.innerHTML = '<p class="error-message">Failed to load rides</p>';
         console.error(err);
