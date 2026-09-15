@@ -18,7 +18,7 @@ if ($type === 'booked') {
     $stmt = $pdo->prepare("
         SELECT b.id AS booking_id, b.status AS booking_status, b.booked_at,
                r.id AS ride_id, r.origin, r.destination, r.departure_time, r.status AS ride_status,
-               u.full_name AS driver_name, u.avg_rating AS driver_rating
+               u.id AS driver_id, u.full_name AS driver_name, u.avg_rating AS driver_rating
         FROM bookings b
         JOIN rides r ON b.ride_id = r.id
         JOIN users u ON r.driver_id = u.id

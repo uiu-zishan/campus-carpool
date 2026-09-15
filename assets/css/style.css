@@ -368,3 +368,45 @@ body {
     font-weight: 700;
     color: #000;
 }
+/* ==========================================================
+   WEEK 2 LAYOUT FIX
+   Auth pages (login/register) use centered flex.
+   App pages (dashboard, etc.) use normal block layout.
+   ========================================================== */
+
+body.app-body {
+    display: block;
+    justify-content: initial;
+    align-items: initial;
+    padding: 0;
+    min-height: auto;
+}
+/* ==========================================================
+   POLISH FIXES — Small buttons + Mobile nav
+   ========================================================== */
+
+/* Small buttons in cards should not stretch full width */
+.btn-primary.btn-small,
+.btn-secondary.btn-small,
+.btn-danger.btn-small {
+    width: auto;
+    display: inline-block;
+}
+
+/* Prevent nav overflow on narrow screens */
+.topnav .nav-links {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+@media (max-width: 800px) {
+    .topnav {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+    .topnav .nav-links {
+        width: 100%;
+        justify-content: center;
+    }
+}
