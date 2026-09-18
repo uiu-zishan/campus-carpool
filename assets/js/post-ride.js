@@ -2,8 +2,28 @@
 
 let checkpointCount = 0;
 
-document.addEventListener('DOMContentLoaded', () => {
-    addCheckpointRow(); // Start with 2 rows (origin + destination)
+document.addEventListener('DOMContentLoaded', async () => {
+    // BUSINESS RULE: Check if user has a registered vehicle first
+    try {
+        const res = await fetch('api/manage_vehicle.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'get' })
+        });
+        const data = await res.json();
+
+        if (!data.vehicle) {
+            // No vehicle — show notice, hide form
+            document.getElementById('noVehicleNotice').style.display = 'block';
+            document.getElementById('postRideForm').style.display = 'none';
+            return;
+        }
+    } catch (err) {
+        console.error('Vehicle check failed:', err);
+    }
+
+    // User has a vehicle — proceed normally
+    addCheckpointRow();
     addCheckpointRow();
 
     document.getElementById('addCheckpointBtn').addEventListener('click', addCheckpointRow);

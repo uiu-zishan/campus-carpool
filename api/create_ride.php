@@ -10,6 +10,15 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $driver_id = $_SESSION['user_id'];
+// BUSINESS RULE: Driver must have a registered vehicle
+$stmt = $pdo->prepare("SELECT id, capacity FROM vehicles WHERE driver_id = ?");
+$stmt->execute([$driver_id]);
+$vehicle = $stmt->fetch();
+
+if (!$vehicle) {
+    echo json_encode(['success' => false, 'message' => 'Please register your vehicle before posting a ride']);
+    exit;
+}
 $data = json_decode(file_get_contents("php://input"), true);
 
 // Validate required fields
@@ -21,9 +30,9 @@ foreach ($required as $field) {
     }
 }
 
-// Validate seats
-if ($data['seats_available'] < 1 || $data['seats_available'] > 10) {
-    echo json_encode(['success' => false, 'message' => 'Seats must be between 1 and 10']);
+// Validate seats against vehicle capacity
+if ($data['seats_available'] > $vehicle['capacity']) {
+    echo json_encode(['success' => false, 'message' => 'Seats exceed your vehicle capacity of ' . $vehicle['capacity']]);
     exit;
 }
 
