@@ -3,10 +3,14 @@
 // ============ LOGOUT HANDLER ============
 const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
-    logoutBtn.addEventListener('click', (e) => {
+    logoutBtn.addEventListener('click', async (e) => {
         e.preventDefault();
-        // Clear any client-side session markers
         if (confirm('Are you sure you want to logout?')) {
+            try {
+                await fetch('api/logout.php', { method: 'POST' });
+            } catch (err) {
+                console.error('Logout API error:', err);
+            }
             window.location.href = 'login.html';
         }
     });
